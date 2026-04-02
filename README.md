@@ -117,7 +117,7 @@ http://localhost:5000
 - Add blog section  
 - Improve performance & animations  
 
----
+-----
 
 ## ⭐ Support
 
