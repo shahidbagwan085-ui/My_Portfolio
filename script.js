@@ -345,7 +345,7 @@
           // faint glow for larger stars
           if(s.r > 1.2){
             ctx.beginPath();
-            ctx.fillStyle = `rgba(140,110,255,${(alpha * 0.055).toFixed(3)})`;
+            ctx.fillStyle = `rgba(200,241,105,${(alpha * 0.055).toFixed(3)})`;
             ctx.arc(sx, sy, s.r * 4, 0, Math.PI * 2);
             ctx.fill();
           }
@@ -364,7 +364,7 @@
           const max = 140 * Math.max(a.s,b.s);
           if(dist < max){
             const alpha = (1 - dist / max) * 0.12 * (a.s + b.s);
-            ctx.strokeStyle = `rgba(120,80,255,${alpha.toFixed(3)})`;
+            ctx.strokeStyle = `rgba(200,241,105,${alpha.toFixed(3)})`;
             ctx.lineWidth = Math.max(0.4, (1 - dist / max) * 1.6);
             ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
           }
@@ -376,8 +376,8 @@
         const p = project(nodes[i]);
         const grad = ctx.createRadialGradient(p.x,p.y,p.r*0.15,p.x,p.y,p.r*1.8);
         grad.addColorStop(0,'rgba(150,120,255,0.95)');
-        grad.addColorStop(0.6,'rgba(120,80,255,0.7)');
-        grad.addColorStop(1,'rgba(120,80,255,0.05)');
+        grad.addColorStop(0.6,'rgba(200,241,105,0.7)');
+        grad.addColorStop(1,'rgba(200,241,105,0.05)');
         ctx.fillStyle = grad;
         ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
       }
@@ -698,3 +698,24 @@
 })();
 
 })();
+
+// Case studies use native dialogs for keyboard and focus support.
+document.querySelectorAll('[data-case]').forEach((trigger)=>{
+  const dialog = document.getElementById(trigger.dataset.case);
+  if(!dialog) return;
+  trigger.addEventListener('click', ()=>dialog.showModal());
+  dialog.querySelector('.dialog-close')?.addEventListener('click', ()=>dialog.close());
+  dialog.addEventListener('click', (event)=>{
+    if(event.target === dialog) dialog.close();
+  });
+});
+
+document.querySelectorAll('#primaryNav .nav-link').forEach((link)=>{
+  link.addEventListener('click', ()=>{
+    document.getElementById('primaryNav')?.classList.remove('open');
+    document.getElementById('navToggle')?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+const currentYear = document.getElementById('currentYear');
+if(currentYear) currentYear.textContent = String(new Date().getFullYear());
