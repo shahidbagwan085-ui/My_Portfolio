@@ -7,7 +7,7 @@ This project showcases my journey as a **Web Developer, AI Enthusiast, and Data 
 
 ## 🚀 Live Demo
 🔗[ Shahid Bagwan ](https://shahidbagwan.netlify.app/)  
-*(Add your deployed link here)*
+
 
 ---
 
